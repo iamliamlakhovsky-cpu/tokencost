@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ===================== SEO: edit these for your brand/domain ===================== -->
+<title>AI API Cost Calculator (2026) ‚Äî Compare GPT, Claude, Gemini Pricing</title>
+<meta name="description" content="Free LLM API cost calculator. Compare the real monthly price of GPT, Claude, Gemini, DeepSeek, Llama and more for your token usage. Find the cheapest model for chatbots, RAG, and coding agents." />
+<meta name="keywords" content="ai api cost calculator, llm pricing, openai api cost, claude api pricing, gemini api cost, gpt-4o pricing, llm cost comparison" />
+<link rel="canonical" href="https://REPLACE-WITH-YOUR-DOMAIN.com/" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="AI API Cost Calculator ‚Äî Compare GPT, Claude & Gemini Pricing" />
+<meta property="og:description" content="Find the cheapest AI model for your usage. Free, no signup." />
+<meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN.com/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Structured data: helps Google show you as a tool + rich FAQ results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI API Cost Calculator",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is the cheapest AI API in 2026?","acceptedAnswer":{"@type":"Answer","text":"It depends on your workload. For high-volume simple tasks, small models like GPT-4o mini, Claude Haiku, Gemini Flash and DeepSeek are typically cheapest. Use the calculator above to compare your exact token usage across providers."}},
+    {"@type":"Question","name":"How is LLM API cost calculated?","acceptedAnswer":{"@type":"Answer","text":"Cost = (input tokens √ó input price) + (output tokens √ó output price), per request, multiplied by your number of requests. Prices are usually quoted per 1 million tokens."}},
+    {"@type":"Question","name":"How many tokens is a word?","acceptedAnswer":{"@type":"Answer","text":"Roughly 1 token ‚âà 0.75 words in English, so 1,000 tokens ‚âà 750 words. A typical paragraph is about 100 tokens."}}
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --bg:#0b0f1a; --panel:#121829; --panel2:#171f33; --line:#243049;
+    --text:#e8edf7; --muted:#8a97b2; --accent:#5b8cff; --accent2:#33d6a6;
+    --warn:#ffb454; --good:#33d6a6; --radius:14px; --max:1080px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:radial-gradient(1200px 600px at 70% -10%, #18233f 0%, var(--bg) 55%) fixed;
+    color:var(--text); font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+  header.site{padding:26px 0 6px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:.2px}
+  .brand .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 18px var(--accent)}
+  .hero{padding:30px 0 8px}
+  .hero h1{font-size:clamp(26px,4vw,40px);line-height:1.12;margin:0 0 10px;font-weight:800;letter-spacing:-.5px}
+  .hero p{color:var(--muted);font-size:18px;margin:0 0 4px;max-width:680px}
+  .updated{display:inline-block;margin-top:10px;font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:999px}
+
+  .grid{display:grid;grid-template-columns:340px 1fr;gap:22px;margin:24px 0 8px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .card h2{margin:0 0 14px;font-size:15px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted)}
+
+  label.field{display:block;margin:0 0 14px}
+  label.field span{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+  input[type=number]{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px 12px;font-size:15px}
+  input[type=number]:focus{outline:none;border-color:var(--accent)}
+  .presets{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+  .preset{cursor:pointer;font-size:13px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:7px 11px;border-radius:999px}
+  .preset:hover{border-color:var(--accent)}
+  .preset.active{background:var(--accent);border-color:var(--accent);color:#06122e;font-weight:600}
+  .hint{font-size:12px;color:var(--muted);margin-top:-8px}
+
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  th,td{text-align:right;padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;user-select:none}
+  tbody tr:hover{background:var(--panel2)}
+  .model-name{font-weight:600}
+  .provider{display:block;font-size:12px;color:var(--muted);font-weight:400}
+  .cost{font-weight:700;font-variant-numeric:tabular-nums}
+  .cheapest td{background:rgba(51,214,166,.08)}
+  .cheapest .cost{color:var(--good)}
+  .tag{font-size:10px;text-transform:uppercase;letter-spacing:.5px;background:var(--good);color:#06231a;padding:2px 7px;border-radius:999px;margin-left:8px;font-weight:700}
+
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .filters .chip{font-size:12.5px;border:1px solid var(--line);background:var(--panel2);padding:6px 10px;border-radius:999px;cursor:pointer;color:var(--muted)}
+  .filters .chip.on{color:var(--text);border-color:var(--accent)}
+
+  /* ===================== AFFILIATE SECTION =====================
+     This is where the money comes from. Replace the href="#" links with YOUR
+     affiliate/referral links once you sign up (see README ‚Üí "Affiliate setup").
+     Keep it tasteful ‚Äî 3 to 5 genuinely useful tools converts best. */
+  .recos{margin:34px 0}
+  .recos h2{font-size:22px;margin:0 0 4px}
+  .recos .sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+  .reco-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .reco{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;color:var(--text)}
+  .reco:hover{border-color:var(--accent);text-decoration:none;transform:translateY(-2px);transition:.15s}
+  .reco .r-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .reco .r-name{font-weight:700;font-size:16px}
+  .reco .r-badge{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+  .reco p{margin:0;color:var(--muted);font-size:14px}
+
+  .content{margin:40px 0;max-width:760px}
+  .content h2{font-size:24px;margin:30px 0 10px}
+  .content h3{font-size:18px;margin:22px 0 6px}
+  .content p,.content li{color:#cdd6ea}
+  .content code{background:var(--panel2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;font-size:13px}
+
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:24px 0 50px;color:var(--muted);font-size:13.5px}
+  .disclosure{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap"><div class="brand"><span class="dot"></span> TokenCost<span style="color:var(--muted);font-weight:500">.tools</span></div></div></header>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>AI API Cost Calculator</h1>
+    <p>Compare the real monthly cost of every major AI model ‚Äî GPT, Claude, Gemini, DeepSeek, Llama and more ‚Äî for <em>your</em> exact usage. Free, no signup.</p>
+    <span class="updated">Prices last verified: <strong id="lastUpdated">June 29, 2026</strong></span>
+  </section>
+
+  <div class="grid">
+    <!-- Inputs -->
+    <div class="card">
+      <h2>Your usage</h2>
+      <div class="presets" id="presets">
+        <button class="preset" data-in="500" data-out="300" data-req="30000">üí¨ Chatbot</button>
+        <button class="preset" data-in="4000" data-out="500" data-req="20000">üìö RAG / docs</button>
+        <button class="preset" data-in="1500" data-out="1500" data-req="5000">‚úçÔ∏è Writing</button>
+        <button class="preset" data-in="8000" data-out="2000" data-req="10000">ü§ñ Coding agent</button>
+      </div>
+      <label class="field"><span>Input tokens per request</span>
+        <input type="number" id="inTok" value="500" min="0" /></label>
+      <label class="field"><span>Output tokens per request</span>
+        <input type="number" id="outTok" value="300" min="0" /></label>
+      <label class="field"><span>Requests per month</span>
+        <input type="number" id="reqs" value="30000" min="0" /></label>
+      <p class="hint">Tip: ~1,000 tokens ‚âà 750 words. Not sure? Start with a preset above.</p>
+    </div>
+
+    <!-- Results -->
+    <div class="card">
+      <h2>Monthly cost by model ‚Äî cheapest first</h2>
+      <div class="filters" id="filters"></div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr>
+            <th data-sort="name">Model</th>
+            <th data-sort="in">$/1M in</th>
+            <th data-sort="out">$/1M out</th>
+            <th data-sort="cost">Monthly cost ‚ñæ</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p class="hint" style="margin-top:14px">Prices are per-token list prices and change often. Always confirm on the provider's site before committing. <a href="#disclaimer">Why?</a></p>
+    </div>
+  </div>
+
+  <!-- ===================== AFFILIATE / MONETIZATION ===================== -->
+  <section class="recos">
+    <h2>Tools to build (and ship) your AI app</h2>
+    <p class="sub">Hand-picked infrastructure indie devs actually use. <span style="font-size:12px">(Some links are affiliate links ‚Äî see disclosure below.)</span></p>
+    <div class="reco-grid">
+      <!-- REPLACE href="#" WITH YOUR AFFILIATE LINK. See README. -->
+      <a class="reco" href="#" rel="sponsored nofollow" target="_blank">
+        <div class="r-top"><span class="r-name">Cloud hosting</span><span class="r-badge">Deploy</span></div>
+        <p>Ship your AI app on fast, affordable cloud hosting with a free trial.</p>
+      </a>
+      <a class="reco" href="#" rel="sponsored nofollow" target="_blank">
+        <div class="r-top"><span class="r-name">Vector database</span><span class="r-badge">RAG</span></div>
+        <p>Store embeddings for retrieval-augmented apps. Generous free tier.</p>
+      </a>
+      <a class="reco" href="#" rel="sponsored nofollow" target="_blank">
+        <div class="r-top"><span class="r-name">LLM observability</span><span class="r-badge">Monitor</span></div>
+        <p>Track tokens, latency and spend across providers in one dashboard.</p>
+      </a>
+      <a class="reco" href="#" rel="sponsored nofollow" target="_blank">
+        <div class="r-top"><span class="r-name">AI dev course</span><span class="r-badge">Learn</span></div>
+        <p>Go from API key to deployed product. Beginner-friendly.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== SEO CONTENT ===================== -->
+  <article class="content">
+    <h2>How to use this AI cost calculator</h2>
+    <p>Enter how many <strong>input tokens</strong> (your prompt) and <strong>output tokens</strong> (the model's reply) a typical request uses, plus how many requests you expect per month. The table instantly ranks every model by total monthly cost so you can spot the cheapest option for your workload.</p>
+
+    <h3>How LLM pricing actually works</h3>
+    <p>Almost every provider charges <em>per token</em>, split into input and output rates, quoted per 1 million tokens. Output is usually 2‚Äì5√ó more expensive than input, so chatty models that generate long answers cost far more than the headline input price suggests. The formula:</p>
+    <p><code>cost = requests √ó (input_tokens √ó in_price + output_tokens √ó out_price) / 1,000,000</code></p>
+
+    <h3>How to cut your AI bill</h3>
+    <ul>
+      <li><strong>Right-size the model.</strong> Small models (mini/flash/haiku tiers) are often 10‚Äì30√ó cheaper and good enough for classification, extraction and simple chat.</li>
+      <li><strong>Trim your prompts.</strong> Long system prompts and stuffed context get billed on every call. Cache or summarize.</li>
+      <li><strong>Cap output length.</strong> Set max tokens. Output is where the money goes.</li>
+      <li><strong>Use prompt caching</strong> where supported to cut repeated-context cost dramatically.</li>
+      <li><strong>Batch</strong> non-urgent jobs ‚Äî several providers offer ~50% off batch processing.</li>
+    </ul>
+
+    <h2 id="faq">Frequently asked questions</h2>
+    <h3>What's the cheapest AI API?</h3>
+    <p>For high-volume simple work, the small/fast tiers (GPT-4o mini, Claude Haiku, Gemini Flash, DeepSeek) are usually cheapest. Run your real numbers above ‚Äî the winner changes a lot with output length.</p>
+    <h3>How many tokens is a word?</h3>
+    <p>About 1.3 tokens per English word, so 1,000 tokens ‚âà 750 words.</p>
+    <h3>Are these prices current?</h3>
+    <p id="disclaimer">They're list prices verified on the date shown at the top, but providers change pricing frequently and this tool updates periodically. Always confirm on the official provider page before relying on a number for budgeting.</p>
+  </article>
+
+  <footer>
+    <div class="disclosure"><strong>Affiliate disclosure:</strong> Some links on this page are affiliate or referral links. If you sign up through them we may earn a commission at no extra cost to you. We only list tools we'd genuinely recommend. Prices and pricing tiers are provided for general guidance and may be out of date.</div>
+    <div>¬© <span id="yr"></span> TokenCost.tools ‚Äî Independent. Not affiliated with OpenAI, Anthropic, Google or any model provider. All trademarks belong to their owners.</div>
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   PRICING DATA  ‚Äî  THIS IS THE PART YOU UPDATE WEEKLY.
+   Prices are USD per 1,000,000 tokens (in = input/prompt, out = output).
+   To update: change a number, add/remove a {} line, then save & redeploy.
+   Verify against the official pages (links in README ‚Üí "Weekly update").
+   Last verified date is set in `LAST_UPDATED` below ‚Äî keep it honest.
+   ===================================================================== */
+const LAST_UPDATED = "June 29, 2026";
+
+const MODELS = [
+  // provider,            model,               in,     out
+  ["OpenAI",   "GPT-4o",              2.50,  10.00],
+  ["OpenAI",   "GPT-4o mini",         0.15,   0.60],
+  ["OpenAI",   "o3-mini",             1.10,   4.40],
+  ["Anthropic","Claude Opus 4",      15.00,  75.00],
+  ["Anthropic","Claude Sonnet 4",     3.00,  15.00],
+  ["Anthropic","Claude Haiku 3.5",    0.80,   4.00],
+  ["Google",   "Gemini 2.0 Flash",    0.10,   0.40],
+  ["Google",   "Gemini 1.5 Pro",      1.25,   5.00],
+  ["DeepSeek", "DeepSeek-V3",         0.27,   1.10],
+  ["Mistral",  "Mistral Large",       2.00,   6.00],
+  ["Meta",     "Llama 3.3 70B*",      0.20,   0.20],  // *via hosted provider; varies
+  ["xAI",      "Grok-2",              2.00,  10.00]
+];
+/* ===================================================================== */
+
+const $ = id => document.getElementById(id);
+$("lastUpdated").textContent = LAST_UPDATED;
+$("yr").textContent = "2026";
+
+let sortKey = "cost", sortDir = 1;
+const providers = [...new Set(MODELS.map(m => m[0]))];
+const active = new Set(providers);
+
+// provider filter chips
+const fbox = $("filters");
+providers.forEach(p => {
+  const c = document.createElement("span");
+  c.className = "chip on"; c.textContent = p;
+  c.onclick = () => { c.classList.toggle("on"); active.has(p)?active.delete(p):active.add(p); render(); };
+  fbox.appendChild(c);
+});
+
+function calc() {
+  const inT = +$("inTok").value || 0, outT = +$("outTok").value || 0, r = +$("reqs").value || 0;
+  return MODELS.filter(m => active.has(m[0])).map(([prov,name,pin,pout]) => ({
+    prov, name, pin, pout,
+    cost: r * (inT * pin + outT * pout) / 1e6
+  }));
+}
+function fmt(n){ return n >= 100 ? "$"+n.toLocaleString(undefined,{maximumFractionDigits:0})
+            : n >= 1 ? "$"+n.toFixed(2) : "$"+n.toFixed(3); }
+
+function render() {
+  const data = calc();
+  data.sort((a,b) => {
+    let A,B;
+    if(sortKey==="name"){A=a.name;B=b.name;return A<B?-sortDir:A>B?sortDir:0;}
+    A = sortKey==="in"?a.pin : sortKey==="out"?a.pout : a.cost;
+    B = sortKey==="in"?b.pin : sortKey==="out"?b.pout : b.cost;
+    return (A-B)*sortDir;
+  });
+  const min = Math.min(...data.map(d=>d.cost));
+  const rows = $("rows"); rows.innerHTML = "";
+  data.forEach(d => {
+    const tr = document.createElement("tr");
+    if(d.cost===min && data.length>1) tr.className="cheapest";
+    tr.innerHTML = `<td><span class="model-name">${d.name}</span><span class="provider">${d.prov}</span></td>
+      <td>$${d.pin.toFixed(2)}</td><td>$${d.pout.toFixed(2)}</td>
+      <td class="cost">${fmt(d.cost)}${(d.cost===min&&data.length>1)?'<span class="tag">cheapest</span>':''}</td>`;
+    rows.appendChild(tr);
+  });
+}
+
+// sorting
+document.querySelectorAll("th[data-sort]").forEach(th => {
+  th.onclick = () => {
+    const k = th.dataset.sort;
+    if(sortKey===k) sortDir*=-1; else { sortKey=k; sortDir = k==="name"?1:1; }
+    render();
+  };
+});
+// presets
+$("presets").querySelectorAll(".preset").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll(".preset").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    $("inTok").value=b.dataset.in; $("outTok").value=b.dataset.out; $("reqs").value=b.dataset.req;
+    render();
+  };
+});
+["inTok","outTok","reqs"].forEach(id => $(id).addEventListener("input", render));
+render();
+</script>
+</body>
+</html>
