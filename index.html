@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- ===================== SEO: edit these for your brand/domain ===================== -->
-<title>AI API Cost Calculator (2026) ‚Äî Compare GPT, Claude, Gemini Pricing</title>
+<title>AI API Cost Calculator (2026) - Compare GPT, Claude, Gemini Pricing</title>
 <meta name="description" content="Free LLM API cost calculator. Compare the real monthly price of GPT, Claude, Gemini, DeepSeek, Llama and more for your token usage. Find the cheapest model for chatbots, RAG, and coding agents." />
 <meta name="keywords" content="ai api cost calculator, llm pricing, openai api cost, claude api pricing, gemini api cost, gpt-4o pricing, llm cost comparison" />
-<link rel="canonical" href="https://REPLACE-WITH-YOUR-DOMAIN.com/" />
+<link rel="canonical" href="https://iamliamlakhovsky-cpu.github.io/tokencost/" />
 <meta name="robots" content="index, follow" />
 
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="AI API Cost Calculator ‚Äî Compare GPT, Claude & Gemini Pricing" />
+<meta property="og:title" content="AI API Cost Calculator - Compare GPT, Claude & Gemini Pricing" />
 <meta property="og:description" content="Find the cheapest AI model for your usage. Free, no signup." />
-<meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN.com/" />
+<meta property="og:url" content="https://iamliamlakhovsky-cpu.github.io/tokencost/" />
 <meta name="twitter:card" content="summary_large_image" />
 
 <!-- Structured data: helps Google show you as a tool + rich FAQ results -->
@@ -35,8 +35,8 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type":"Question","name":"What is the cheapest AI API in 2026?","acceptedAnswer":{"@type":"Answer","text":"It depends on your workload. For high-volume simple tasks, small models like GPT-4o mini, Claude Haiku, Gemini Flash and DeepSeek are typically cheapest. Use the calculator above to compare your exact token usage across providers."}},
-    {"@type":"Question","name":"How is LLM API cost calculated?","acceptedAnswer":{"@type":"Answer","text":"Cost = (input tokens √ó input price) + (output tokens √ó output price), per request, multiplied by your number of requests. Prices are usually quoted per 1 million tokens."}},
-    {"@type":"Question","name":"How many tokens is a word?","acceptedAnswer":{"@type":"Answer","text":"Roughly 1 token ‚âà 0.75 words in English, so 1,000 tokens ‚âà 750 words. A typical paragraph is about 100 tokens."}}
+    {"@type":"Question","name":"How is LLM API cost calculated?","acceptedAnswer":{"@type":"Answer","text":"Cost = (input tokens x input price) + (output tokens x output price), per request, multiplied by your number of requests. Prices are usually quoted per 1 million tokens."}},
+    {"@type":"Question","name":"How many tokens is a word?","acceptedAnswer":{"@type":"Answer","text":"Roughly 1 token ~ 0.75 words in English, so 1,000 tokens ~ 750 words. A typical paragraph is about 100 tokens."}}
   ]
 }
 </script>
@@ -98,8 +98,8 @@
 
   /* ===================== AFFILIATE SECTION =====================
      This is where the money comes from. Replace the href="#" links with YOUR
-     affiliate/referral links once you sign up (see README ‚Üí "Affiliate setup").
-     Keep it tasteful ‚Äî 3 to 5 genuinely useful tools converts best. */
+     affiliate/referral links once you sign up (see README -> "Affiliate setup").
+     Keep it tasteful - 3 to 5 genuinely useful tools converts best. */
   .recos{margin:34px 0}
   .recos h2{font-size:22px;margin:0 0 4px}
   .recos .sub{color:var(--muted);margin:0 0 18px;font-size:15px}
@@ -127,7 +127,7 @@
 <div class="wrap">
   <section class="hero">
     <h1>AI API Cost Calculator</h1>
-    <p>Compare the real monthly cost of every major AI model ‚Äî GPT, Claude, Gemini, DeepSeek, Llama and more ‚Äî for <em>your</em> exact usage. Free, no signup.</p>
+    <p>Compare the real monthly cost of every major AI model - GPT, Claude, Gemini, DeepSeek, Llama and more - for <em>your</em> exact usage. Free, no signup.</p>
     <span class="updated">Prices last verified: <strong id="lastUpdated">June 29, 2026</strong></span>
   </section>
 
@@ -136,10 +136,10 @@
     <div class="card">
       <h2>Your usage</h2>
       <div class="presets" id="presets">
-        <button class="preset" data-in="500" data-out="300" data-req="30000">üí¨ Chatbot</button>
-        <button class="preset" data-in="4000" data-out="500" data-req="20000">üìö RAG / docs</button>
-        <button class="preset" data-in="1500" data-out="1500" data-req="5000">‚úçÔ∏è Writing</button>
-        <button class="preset" data-in="8000" data-out="2000" data-req="10000">ü§ñ Coding agent</button>
+        <button class="preset" data-in="500" data-out="300" data-req="30000">Chatbot</button>
+        <button class="preset" data-in="4000" data-out="500" data-req="20000">RAG / docs</button>
+        <button class="preset" data-in="1500" data-out="1500" data-req="5000">Writing</button>
+        <button class="preset" data-in="8000" data-out="2000" data-req="10000">Coding agent</button>
       </div>
       <label class="field"><span>Input tokens per request</span>
         <input type="number" id="inTok" value="500" min="0" /></label>
@@ -147,12 +147,12 @@
         <input type="number" id="outTok" value="300" min="0" /></label>
       <label class="field"><span>Requests per month</span>
         <input type="number" id="reqs" value="30000" min="0" /></label>
-      <p class="hint">Tip: ~1,000 tokens ‚âà 750 words. Not sure? Start with a preset above.</p>
+      <p class="hint">Tip: ~1,000 tokens ~ 750 words. Not sure? Start with a preset above.</p>
     </div>
 
     <!-- Results -->
     <div class="card">
-      <h2>Monthly cost by model ‚Äî cheapest first</h2>
+      <h2>Monthly cost by model - cheapest first</h2>
       <div class="filters" id="filters"></div>
       <div style="overflow-x:auto">
         <table>
@@ -160,7 +160,7 @@
             <th data-sort="name">Model</th>
             <th data-sort="in">$/1M in</th>
             <th data-sort="out">$/1M out</th>
-            <th data-sort="cost">Monthly cost ‚ñæ</th>
+            <th data-sort="cost">Monthly cost </th>
           </tr></thead>
           <tbody id="rows"></tbody>
         </table>
@@ -172,7 +172,7 @@
   <!-- ===================== AFFILIATE / MONETIZATION ===================== -->
   <section class="recos">
     <h2>Tools to build (and ship) your AI app</h2>
-    <p class="sub">Hand-picked infrastructure indie devs actually use. <span style="font-size:12px">(Some links are affiliate links ‚Äî see disclosure below.)</span></p>
+    <p class="sub">Hand-picked infrastructure indie devs actually use. <span style="font-size:12px">(Some links are affiliate links - see disclosure below.)</span></p>
     <div class="reco-grid">
       <!-- REPLACE href="#" WITH YOUR AFFILIATE LINK. See README. -->
       <a class="reco" href="#" rel="sponsored nofollow" target="_blank">
@@ -200,40 +200,40 @@
     <p>Enter how many <strong>input tokens</strong> (your prompt) and <strong>output tokens</strong> (the model's reply) a typical request uses, plus how many requests you expect per month. The table instantly ranks every model by total monthly cost so you can spot the cheapest option for your workload.</p>
 
     <h3>How LLM pricing actually works</h3>
-    <p>Almost every provider charges <em>per token</em>, split into input and output rates, quoted per 1 million tokens. Output is usually 2‚Äì5√ó more expensive than input, so chatty models that generate long answers cost far more than the headline input price suggests. The formula:</p>
-    <p><code>cost = requests √ó (input_tokens √ó in_price + output_tokens √ó out_price) / 1,000,000</code></p>
+    <p>Almost every provider charges <em>per token</em>, split into input and output rates, quoted per 1 million tokens. Output is usually 2-5x more expensive than input, so chatty models that generate long answers cost far more than the headline input price suggests. The formula:</p>
+    <p><code>cost = requests x (input_tokens x in_price + output_tokens x out_price) / 1,000,000</code></p>
 
     <h3>How to cut your AI bill</h3>
     <ul>
-      <li><strong>Right-size the model.</strong> Small models (mini/flash/haiku tiers) are often 10‚Äì30√ó cheaper and good enough for classification, extraction and simple chat.</li>
+      <li><strong>Right-size the model.</strong> Small models (mini/flash/haiku tiers) are often 10-30x cheaper and good enough for classification, extraction and simple chat.</li>
       <li><strong>Trim your prompts.</strong> Long system prompts and stuffed context get billed on every call. Cache or summarize.</li>
       <li><strong>Cap output length.</strong> Set max tokens. Output is where the money goes.</li>
       <li><strong>Use prompt caching</strong> where supported to cut repeated-context cost dramatically.</li>
-      <li><strong>Batch</strong> non-urgent jobs ‚Äî several providers offer ~50% off batch processing.</li>
+      <li><strong>Batch</strong> non-urgent jobs - several providers offer ~50% off batch processing.</li>
     </ul>
 
     <h2 id="faq">Frequently asked questions</h2>
     <h3>What's the cheapest AI API?</h3>
-    <p>For high-volume simple work, the small/fast tiers (GPT-4o mini, Claude Haiku, Gemini Flash, DeepSeek) are usually cheapest. Run your real numbers above ‚Äî the winner changes a lot with output length.</p>
+    <p>For high-volume simple work, the small/fast tiers (GPT-4o mini, Claude Haiku, Gemini Flash, DeepSeek) are usually cheapest. Run your real numbers above - the winner changes a lot with output length.</p>
     <h3>How many tokens is a word?</h3>
-    <p>About 1.3 tokens per English word, so 1,000 tokens ‚âà 750 words.</p>
+    <p>About 1.3 tokens per English word, so 1,000 tokens ~ 750 words.</p>
     <h3>Are these prices current?</h3>
     <p id="disclaimer">They're list prices verified on the date shown at the top, but providers change pricing frequently and this tool updates periodically. Always confirm on the official provider page before relying on a number for budgeting.</p>
   </article>
 
   <footer>
     <div class="disclosure"><strong>Affiliate disclosure:</strong> Some links on this page are affiliate or referral links. If you sign up through them we may earn a commission at no extra cost to you. We only list tools we'd genuinely recommend. Prices and pricing tiers are provided for general guidance and may be out of date.</div>
-    <div>¬© <span id="yr"></span> TokenCost.tools ‚Äî Independent. Not affiliated with OpenAI, Anthropic, Google or any model provider. All trademarks belong to their owners.</div>
+    <div>(c) <span id="yr"></span> TokenCost.tools - Independent. Not affiliated with OpenAI, Anthropic, Google or any model provider. All trademarks belong to their owners.</div>
   </footer>
 </div>
 
 <script>
 /* =====================================================================
-   PRICING DATA  ‚Äî  THIS IS THE PART YOU UPDATE WEEKLY.
+   PRICING DATA  -  THIS IS THE PART YOU UPDATE WEEKLY.
    Prices are USD per 1,000,000 tokens (in = input/prompt, out = output).
    To update: change a number, add/remove a {} line, then save & redeploy.
-   Verify against the official pages (links in README ‚Üí "Weekly update").
-   Last verified date is set in `LAST_UPDATED` below ‚Äî keep it honest.
+   Verify against the official pages (links in README -> "Weekly update").
+   Last verified date is set in `LAST_UPDATED` below - keep it honest.
    ===================================================================== */
 const LAST_UPDATED = "June 29, 2026";
 
