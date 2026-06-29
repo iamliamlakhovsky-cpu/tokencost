@@ -238,20 +238,26 @@
 const LAST_UPDATED = "June 29, 2026";
 
 const MODELS = [
-  // provider,            model,               in,     out
-  ["OpenAI",   "GPT-4o",              2.50,  10.00],
-  ["OpenAI",   "GPT-4o mini",         0.15,   0.60],
-  ["OpenAI",   "o3-mini",             1.10,   4.40],
-  ["Anthropic","Claude Opus 4",      15.00,  75.00],
-  ["Anthropic","Claude Sonnet 4",     3.00,  15.00],
-  ["Anthropic","Claude Haiku 3.5",    0.80,   4.00],
-  ["Google",   "Gemini 2.0 Flash",    0.10,   0.40],
-  ["Google",   "Gemini 1.5 Pro",      1.25,   5.00],
-  ["DeepSeek", "DeepSeek-V3",         0.27,   1.10],
-  ["Mistral",  "Mistral Large",       2.00,   6.00],
-  ["Meta",     "Llama 3.3 70B*",      0.20,   0.20],  // *via hosted provider; varies
-  ["xAI",      "Grok-2",              2.00,  10.00]
+  // provider,            model,                  in,     out   (USD per 1M tokens, verified Jun 2026)
+  ["Google",   "Gemini 2.5 Flash-Lite",  0.10,   0.40],
+  ["DeepSeek", "DeepSeek V4 Flash",      0.14,   0.28],
+  ["OpenAI",   "GPT-4o mini",            0.15,   0.60],
+  ["Meta",     "Llama 4 Scout*",         0.18,   0.59],
+  ["xAI",      "Grok 4.1 Fast",          0.20,   0.50],
+  ["Mistral",  "Mistral Medium 3",       0.40,   2.00],
+  ["OpenAI",   "o4-mini",                0.55,   2.20],
+  ["Meta",     "Llama 3.3 70B*",         0.59,   0.79],
+  ["Anthropic","Claude Haiku 4.5",       1.00,   5.00],
+  ["Google",   "Gemini 2.5 Pro",         1.25,  10.00],
+  ["Google",   "Gemini 3.5 Flash",       1.50,   9.00],
+  ["Mistral",  "Mistral Large",          2.00,   6.00],
+  ["OpenAI",   "o3",                     2.00,   8.00],
+  ["OpenAI",   "GPT-4o",                 2.50,  10.00],
+  ["xAI",      "Grok 4",                 3.00,  15.00],
+  ["Anthropic","Claude Sonnet 4.6",      3.00,  15.00],
+  ["Anthropic","Claude Opus 4.8",        5.00,  25.00]
 ];
+// *Llama via hosted provider (Together/Groq); price varies by host. Always verify before relying on a number.
 /* ===================================================================== */
 
 const $ = id => document.getElementById(id);
